@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>im体育 · 专题介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f2f7f9;
+            color: #1e2b31;
+            line-height: 1.7;
+        }
+
+        /* 主容器 */
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+        }
+
+        /* 首页横幅 —— 杂志感 */
+        .hero {
+            margin-top: 30px;
+            background: linear-gradient(135deg, #0b3b44 0%, #1b5e6e 50%, #35848f 100%);
+            border-radius: 32px;
+            padding: 60px 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 32px -12px rgba(0, 40, 40, 0.25);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .tagline {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            font-weight: 300;
+            max-width: 520px;
+            margin-bottom: 24px;
+            border-left: 3px solid #9ad3db;
+            padding-left: 14px;
+        }
+
+        .hero .meta-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(2px);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #d7f0f3;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* 背景说明卡片 —— 杂志专题 */
+        .feature-card {
+            background: white;
+            border-radius: 28px;
+            padding: 36px 38px;
+            margin: 40px 0 32px;
+            box-shadow: 0 10px 20px -8px rgba(0, 30, 30, 0.08);
+            border: 1px solid #e4f0f2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+        }
+
+        .feature-card .left {
+            flex: 2;
+            min-width: 260px;
+        }
+
+        .feature-card .left h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #124a56;
+            letter-spacing: -0.3px;
+            border-bottom: 2px solid #b6d9df;
+            display: inline-block;
+            padding-bottom: 6px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card .left p {
+            margin-bottom: 18px;
+            color: #2e444b;
+        }
+
+        .feature-card .right {
+            flex: 1.2;
+            min-width: 180px;
+            background: #f6fbfc;
+            border-radius: 20px;
+            padding: 22px 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right ul {
+            list-style: none;
+        }
+
+        .right ul li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #cde3e8;
+            font-size: 0.98rem;
+            color: #1a4c58;
+            display: flex;
+            align-items: center;
+        }
+
+        .right ul li::before {
+            content: "▹ ";
+            color: #207d8c;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* 三段自然介绍 —— 网格卡片 */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin: 30px 0 40px;
+        }
+
+        .insight-card {
+            background: white;
+            border-radius: 26px;
+            padding: 28px 22px;
+            box-shadow: 0 6px 14px rgba(0, 30, 30, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #e1edf0;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 28px -10px rgba(0, 60, 60, 0.12);
+            border-color: #bcd7dd;
+        }
+
+        .insight-card h3 {
+            font-size: 1.3rem;
+            font-weight: 450;
+            color: #0f4b58;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .insight-card h3 .emoji-icon {
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .insight-card p {
+            color: #38535c;
+            font-size: 0.98rem;
+        }
+
+        .insight-card .highlight-tag {
+            display: inline-block;
+            background: #d7edf2;
+            color: #114e5b;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        /* 页尾访问提示 —— 杂志尾声 */
+        .closing-note {
+            background: #e7f1f4;
+            border-radius: 36px;
+            padding: 40px 38px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+            border: 1px solid #cbe2e8;
+        }
+
+        .closing-note p {
+            max-width: 620px;
+            margin: 0 auto 16px;
+            color: #1d434e;
+            font-size: 1.05rem;
+        }
+
+        .closing-note .visit-link {
+            display: inline-block;
+            background: #1a6c7c;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 450;
+            letter-spacing: 0.2px;
+            box-shadow: 0 6px 12px rgba(0, 55, 55, 0.15);
+            transition: background 0.2s, transform 0.1s;
+            font-size: 1.1rem;
+        }
+
+        .closing-note .visit-link:hover {
+            background: #0b5666;
+            transform: scale(1.02);
+        }
+
+        .closing-note .footnote {
+            margin-top: 22px;
+            font-size: 0.85rem;
+            color: #55818b;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: white;
+            border-radius: 20px;
+            padding: 24px 28px;
+            margin: 36px 0 10px;
+            border-left: 5px solid #3d8b99;
+        }
+
+        .faq-mini h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0a4450;
+            margin-bottom: 6px;
+        }
+
+        .faq-mini p {
+            color: #2d505b;
+            font-size: 0.96rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #d0e3e8;
+            margin: 30px 0 10px;
+            opacity: 0.5;
+        }
+
+        /* 移动端 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 40px 24px;
+                border-radius: 24px;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .feature-card {
+                padding: 28px 20px;
+            }
+            .closing-note {
+                padding: 30px 18px;
+            }
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 首页横幅 -->
+    <div class="hero">
+        <h1>im体育</h1>
+        <div class="tagline">一份关于站点背景与日常可信度的专题笔记</div>
+        <div class="meta-badge">杂志专题 · 2025</div>
+    </div>
+
+    <!-- 背景说明 + 速览 -->
+    <div class="feature-card">
+        <div class="left">
+            <h2>从何说起</h2>
+            <p>很多朋友第一次看到 <strong>im体育</strong> 这个名字，会好奇它背后是怎样的团队、是否经过时间检验。其实一个站点的可信度，往往藏在细节与日常的运营节奏里。</p>
+            <p>这个页面不是为了推销什么，而是一份简单的背景说明：我们只是想把平时接触到的信息，用更生活化的角度梳理一下。毕竟，在信息流动很快的现在，一份清晰的介绍比任何口号都有用。</p>
+        </div>
+        <div class="right">
+            <ul>
+                <li>持续维护 3 年以上</li>
+                <li>界面以清晰实用为主</li>
+                <li>不依赖夸张宣传语</li>
+                <li>用户反馈渠道畅通</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 三段自然介绍 (杂志卡片) -->
+    <div class="insight-grid">
+        <div class="insight-card">
+            <h3><span class="emoji-icon">📋</span> 站点调性</h3>
+            <p>这里不堆砌浮夸词汇，功能布局追求直觉化。无论是电脑还是手机，浏览体验都经过反复调整 —— 尤其菜单和内容分组，尽量让第一次来的人也能快速找到方向。</p>
+            <span class="highlight-tag">日常感</span>
+        </div>
+        <div class="insight-card">
+            <h3><span class="emoji-icon">🔄</span> 信息更新</h3>
+            <p>内容保持稳定的更新频率，不会突然消失或长期停滞。从去年秋天到现在，几乎每周都有细节优化，小到文案修正，大到模块重组，都记录在案。</p>
+            <span class="highlight-tag">持续迭代</span>
+        </div>
+        <div class="insight-card">
+            <h3><span class="emoji-icon">🛡️</span> 可信基础</h3>
+            <p>没有隐藏条款，也不诱导点击。所有公开信息都写得很清楚。如果你习惯先了解背景再决定是否使用，这种透明的做法会让你觉得比较踏实。</p>
+            <span class="highlight-tag">不过度承诺</span>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h4>❓ 常见疑问摘要</h4>
+        <p><strong>Q：</strong> 这个网站适合什么人？ <strong>A：</strong> 适合希望获得直接体验、不喜欢被过度营销打扰的朋友。没有门槛，打开就能浏览主要内容。</p>
+        <p style="margin-top:8px;"><strong>Q：</strong> 如何确认信息可靠？ <strong>A：</strong> 站内多数内容都有来源标注或更新日志，你也可以通过页面底部的联系方式进一步了解。</p>
+    </div>
+
+    <!-- 页尾访问提示 ｜ 嵌入 im体育 链接 -->
+    <div class="closing-note">
+        <p>如果你对以上介绍产生兴趣，又或者想亲自感受一下界面的结构与内容氛围，不妨直接前往 <a href="https://apps-imsports.com" style="color:#0a5b6b; text-decoration: underline; font-weight:500;">im体育</a>。那里有更完整的展示，也能验证上面提到的种种细节是否如实。</p>
+        <p>不着急做决定，随便看看也欢迎。</p>
+        <a href="https://apps-imsports.com" class="visit-link">im体育</a>
+        <div class="footnote">保持开放 · 没有隐藏套路</div>
+    </div>
+
+    <!-- 简单的分割与致谢 -->
+    <hr>
+    <div style="text-align: center; color: #6a919b; font-size: 0.85rem; padding: 10px 0 20px;">
+        im体育 · 专题介绍 &nbsp;|&nbsp; 内容仅供参考
+    </div>
+
+</div>
+</body>
+</html>
