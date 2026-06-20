@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>再次遇见 · im体育 介绍页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f3f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            color: #2c3e4f;
+            line-height: 1.6;
+            padding: 1.8rem 1rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-container {
+            max-width: 820px;
+            width: 100%;
+        }
+
+        /* 开场短句卡片 (hero 变形) */
+        .opening-card {
+            background: #ffffff;
+            padding: 2.8rem 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.03);
+            border: 1px solid #e5e9ef;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .opening-card .short-line {
+            font-size: 1.9rem;
+            font-weight: 350;
+            letter-spacing: 1px;
+            color: #1f2b38;
+            margin-bottom: 0.4rem;
+        }
+
+        .opening-card .sub-line {
+            font-size: 1.1rem;
+            color: #5a6b7c;
+            border-top: 1px solid #e9edf3;
+            padding-top: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        /* 承接段落卡片 (再次访问 / 收藏的叙述) */
+        .story-card {
+            background: #ffffff;
+            border: 1px solid #e4e9f0;
+            border-radius: 22px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+
+        .story-card p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .story-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-card .highlight-link {
+            font-weight: 500;
+            color: #1e3c5c;
+            text-decoration: none;
+            border-bottom: 1px dashed #b6c9db;
+        }
+
+        .story-card .highlight-link:hover {
+            border-bottom: 2px solid #3b5b7a;
+            color: #0f2a3e;
+        }
+
+        /* 特点列表——卡片+柔和细边框 */
+        .features-card {
+            background: #ffffff;
+            border: 1px solid #e2e7ef;
+            border-radius: 22px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+
+        .features-card h2 {
+            font-size: 1.35rem;
+            font-weight: 480;
+            color: #1c2b3a;
+            margin-bottom: 1.2rem;
+            border-left: 3px solid #8aa2bb;
+            padding-left: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #f0f3f8;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .feature-list .icon-bullet {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #b8cadf;
+            border-radius: 50%;
+            margin-top: 0.55rem;
+            flex-shrink: 0;
+        }
+
+        .feature-list .feature-text {
+            flex: 1;
+        }
+
+        /* 温和结尾卡片 */
+        .gentle-closing {
+            background: #ffffff;
+            border: 1px solid #e7ecf3;
+            border-radius: 22px;
+            padding: 1.8rem 2.2rem 2.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .gentle-closing p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 0.5rem;
+            color: #3d4f60;
+        }
+
+        .gentle-closing .note-meta {
+            font-size: 0.85rem;
+            color: #8599ae;
+            margin-top: 0.6rem;
+            border-top: 1px solid #ecf0f6;
+            padding-top: 1rem;
+            display: inline-block;
+        }
+
+        /* FAQ 摘要小卡片 – 点缀 */
+        .faq-mini-card {
+            background: #ffffff;
+            border: 1px solid #e2e7ef;
+            border-radius: 18px;
+            padding: 1.4rem 1.8rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-mini-card summary {
+            font-weight: 460;
+            color: #213344;
+            cursor: default;
+            padding: 0.2rem 0;
+            font-size: 0.98rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-mini-card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini-card .faq-answer {
+            margin-top: 0.6rem;
+            padding-top: 0.4rem;
+            border-top: 1px solid #eef3fa;
+            font-size: 0.9rem;
+            color: #435a6e;
+        }
+
+        .faq-mini-card .q-marker {
+            color: #7f96b0;
+            font-weight: 400;
+            margin-right: 0.3rem;
+        }
+
+        /* 场景小标签（点缀） */
+        .scene-tag-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            margin: 1.2rem 0 0.6rem;
+            justify-content: center;
+        }
+
+        .scene-tag {
+            background: #f1f5fa;
+            border: 1px solid #dce3ed;
+            border-radius: 40px;
+            padding: 0.25rem 1.2rem;
+            font-size: 0.8rem;
+            color: #38506b;
+            letter-spacing: 0.3px;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: 0;
+            border-top: 1px solid #e2e9f1;
+        }
+
+        /* 响应式 */
+        @media (max-width: 550px) {
+            .opening-card { padding: 2rem 1.5rem; }
+            .story-card, .features-card, .gentle-closing, .faq-mini-card { padding: 1.5rem 1.2rem; }
+            .opening-card .short-line { font-size: 1.6rem; }
+            body { padding: 1rem 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+
+    <!-- 开场短句 -->
+    <div class="opening-card">
+        <div class="short-line">再次看到，依然熟悉。</div>
+        <div class="sub-line">一个始终留存在收藏夹中的站点</div>
+    </div>
+
+    <!-- 承接段落：再次访问与收藏的视角 -->
+    <div class="story-card">
+        <p>
+            有时候我们会清理书签，但总有几个地址被保留下来，每次打开都觉得顺手、直接。
+            <a href="https://waps-imsports.com" class="highlight-link">im体育</a> 就是其中一个。
+            它没有复杂的首页弹窗，也没有频繁改版带来的陌生感——这或许就是它能一直被保留在收藏夹里的原因。
+        </p>
+        <p>
+            第一次访问时，只觉得信息排布清晰；后来几次再来，发现它的内容更新有固定的节奏，
+            页面结构也始终稳定。对于希望保持关注、偶尔回来看看的人来说，这种稳定感反而成了最值得留意的细节。
+        </p>
+        <p>
+            我把它放在浏览器的常用栏里，每次点开都不需要重新适应，也不用担心找不到想看的条目。
+            持续关注一个站点，有时候是因为它总在那里，而且一直好用。
+        </p>
+    </div>
+
+    <!-- 特点列表卡片（细边框，柔和阴影） -->
+    <div class="features-card">
+        <h2>· 整理过的特点</h2>
+        <ul class="feature-list">
+            <li>
+                <span class="icon-bullet"></span>
+                <span class="feature-text"><strong>清晰的导航结构</strong> —— 分类与子页面层次分明，不会让人在多个标签页之间迷失。</span>
+            </li>
+            <li>
+                <span class="icon-bullet"></span>
+                <span class="feature-text"><strong>内容更新有规律</strong> —— 并非日更轰炸，而是按照可预期的节奏补充和调整，适合细水长流地关注。</span>
+            </li>
+            <li>
+                <span class="icon-bullet"></span>
+                <span class="feature-text"><strong>界面风格一致</strong> —— 从首页到内页，配色、字体、间距都保持统一，视觉负担小。</span>
+            </li>
+            <li>
+                <span class="icon-bullet"></span>
+                <span class="feature-text"><strong>没有过度动效</strong> —— 页面交互克制，不滥用弹窗或自动播放，专注于内容本身。</span>
+            </li>
+        </ul>
+        <!-- 场景小标签（点缀） -->
+        <div class="scene-tag-wrapper">
+            <span class="scene-tag">日常浏览</span>
+            <span class="scene-tag">信息查阅</span>
+            <span class="scene-tag">收藏夹常客</span>
+        </div>
+    </div>
+
+    <!-- 提示 / FAQ 摘要 (温和、非销售语气) -->
+    <div class="faq-mini-card">
+        <details open>
+            <summary><span class="q-marker">❔</span> 如果需要再次找到这个站点？</summary>
+            <div class="faq-answer">
+                添加书签是最直接的方式。大多数浏览器支持在地址栏直接收藏，或者右键标签页加入收藏夹。
+                如果你之前已经收藏过 <a href="https://waps-imsports.com" class="highlight-link">im体育</a>，可以直接从书签栏点开。
+            </div>
+        </details>
+    </div>
+
+    <div class="faq-mini-card">
+        <details>
+            <summary><span class="q-marker">❔</span> 关于持续关注的小建议</summary>
+            <div class="faq-answer">
+                不必每天查看。每隔几天或一周打开一次，页面内容的累积往往更能体现它的价值。
+                保持关注的最好方式不是强迫刷新，而是让它在收藏夹里安安静静地待着——需要的时候，它就在那里。
+            </div>
+        </details>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="gentle-closing">
+        <p>一个站点能让人愿意再次访问，已经是很好的理由。</p>
+        <p>收藏、保留、偶尔回来——这种关系简单而自然。</p>
+        <div class="note-meta">// 2025 · 整理自日常浏览</div>
+    </div>
+
+</div>
+</body>
+</html>
