@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jjb · 轻量导航与知识索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f6f8fa;
+            color: #1f2a3a;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #0077b6;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color .2s, background .2s;
+        }
+
+        a:hover {
+            color: #023e8a;
+            background: #e0f0ff;
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- 深色头图 ---------- */
+        header {
+            background: linear-gradient(145deg, #101a2b 0%, #1a2a40 70%, #1e334d 100%);
+            color: #e4edf5;
+            padding: 36px 0 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            background: #2c405c;
+            padding: 2px 12px 2px 10px;
+            border-radius: 24px;
+            display: inline-block;
+            color: #d6e9ff;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        nav a {
+            color: #bcd3f0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 450;
+            border-bottom: 1px solid transparent;
+            transition: border .2s, color .2s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid #7aa9e0;
+            background: transparent;
+            border-radius: 0;
+        }
+
+        /* ---------- 正文浅色区 ---------- */
+        main {
+            background: #ffffff;
+            padding: 30px 0 60px;
+            margin-top: 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        section {
+            margin-bottom: 48px;
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .hero {
+            padding: 20px 0 10px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 480;
+            letter-spacing: -0.3px;
+            color: #0b1c2c;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 780px;
+            color: #2c3a4e;
+        }
+
+        .highlight {
+            background: #f0f7ff;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 18px;
+        }
+
+        .card {
+            background: #f9fbfd;
+            border: 1px solid #e6edf4;
+            border-radius: 20px;
+            padding: 24px 20px 22px;
+            transition: box-shadow .25s, transform .2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(0, 60, 110, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 480;
+            margin-bottom: 10px;
+            color: #0a2135;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card p {
+            color: #2d3f54;
+            font-size: 0.95rem;
+        }
+
+        .card-icon {
+            display: inline-block;
+            width: 28px;
+            text-align: center;
+            font-size: 1.3rem;
+            opacity: 0.7;
+        }
+
+        .faq-summary {
+            background: #f2f6fc;
+            border-radius: 28px;
+            padding: 28px 30px 32px;
+            margin-top: 24px;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.6rem;
+            font-weight: 450;
+            color: #0c243c;
+            margin-bottom: 12px;
+        }
+
+        .faq-item {
+            margin-bottom: 16px;
+        }
+
+        .faq-item strong {
+            font-weight: 540;
+            color: #003153;
+        }
+
+        .faq-item p {
+            margin-left: 6px;
+            color: #233449;
+        }
+
+        .inline-link {
+            background: #eef4fa;
+            padding: 1px 8px;
+            border-radius: 16px;
+            white-space: nowrap;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: #4a5f78;
+            background: #f0f4fa;
+            padding: 14px 20px;
+            border-radius: 40px;
+            margin: 24px 0 10px;
+            border-left: 4px solid #0077b6;
+        }
+
+        /* ---------- 页脚 ---------- */
+        footer {
+            background: #ffffff;
+            padding: 24px 0 32px;
+            border-top: 1px solid #dce3ec;
+            color: #425a72;
+            font-size: 0.9rem;
+        }
+
+        footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links a {
+            margin-left: 18px;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 780px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            nav {
+                gap: 16px 22px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .faq-summary {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 14px;
+            }
+
+            .card {
+                padding: 18px 16px;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <span class="logo">⏺ jjb</span>
+        <nav>
+            <a href="#revisit">再次访问</a>
+            <a href="#collect">收藏</a>
+            <a href="#scenes">三个场景</a>
+            <a href="#faq">常见说明</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <!-- hero + 再次访问 -->
+        <section class="hero" id="revisit">
+            <h1>持续关注 <span class="highlight">jjb</span> 信息索引</h1>
+            <p>对于需要定期查阅的人来说，<strong>再次访问</strong>的顺畅比首次发现更值得设计。这个页面围绕 <a href="https://com-jjb.com">jjb</a> 长期可用、结构稳定的特点展开，适合存入书签或纳入日常浏览清单。</p>
+            <p style="margin-top: 8px;">无论你过去通过什么渠道了解到它，这里提供的是不变的链接和清晰的分类逻辑——不必每次重新搜索，也不用担心入口漂移。</p>
+        </section>
+
+        <!-- 收藏理由 + 轻量化说明 -->
+        <section id="collect" style="margin-top: 10px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
+                <div style="flex: 1.3; min-width: 220px;">
+                    <h2 style="font-weight: 450; font-size: 1.5rem; color: #0a2135;">值得收藏的理由</h2>
+                    <ul style="margin-top: 12px; list-style: none; padding-left: 0;">
+                        <li style="padding: 6px 0; border-bottom: 1px solid #edf2f7;">✓ 目录式结构，每次返回都落在熟悉的起点</li>
+                        <li style="padding: 6px 0; border-bottom: 1px solid #edf2f7;">✓ 内容更新频率稳定，不堆积无效信息</li>
+                        <li style="padding: 6px 0; border-bottom: 1px solid #edf2f7;">✓ 链接文本明确，没有模糊跳转</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 180px; background: #f5f9ff; padding: 16px 20px; border-radius: 28px;">
+                    <p style="font-weight: 450; margin-bottom: 4px;">🔖 浏览器书签建议</p>
+                    <p style="font-size: 0.9rem;">将 <a href="https://com-jjb.com">jjb</a> 加入书签栏，命名可简化为 “jjb 索引”，便于日常调取。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 三个场景模块 -->
+        <section id="scenes">
+            <h2 style="font-weight: 450; font-size: 1.5rem; color: #0a2135; margin-bottom: 6px;">三个典型使用场景</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3><span class="card-icon">📇</span> 场景一 · 定期查证</h3>
+                    <p>对于需要核对的参考信息，每周或每月固定返回 <a href="https://com-jjb.com">jjb</a> 查看最新状态。页面分类不变，省去重新适应的时间。</p>
+                </div>
+                <div class="card">
+                    <h3><span class="card-icon">🧩</span> 场景二 · 横向比对</h3>
+                    <p>同时打开多个标签页进行对比时，jjb 的简洁排版能减少视觉干扰。你可以把链接嵌入自己的工作文档或笔记中。</p>
+                </div>
+                <div class="card">
+                    <h3><span class="card-icon">📌</span> 场景三 · 推荐给协作者</h3>
+                    <p>当同事或研究伙伴需要同一信息源时，直接分享 <a href="https://com-jjb.com">jjb</a> 这个链接即可。无需额外解释路径，所有人都指向同一个起点。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见说明 (FAQ 摘要) -->
+        <section id="faq">
+            <div class="faq-summary">
+                <h2>常见说明 · 快速参考</h2>
+                <div class="faq-item">
+                    <strong>Q: 页面是否会经常变动？</strong>
+                    <p>A: 核心导航和板块结构会保持稳定；内容条目会按需补充或整理，变化前通常有标识。</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: 怎样确认自己看到的是最新版本？</strong>
+                    <p>A: 直接访问 <a href="https://com-jjb.com">jjb</a> 即可获取当前内容。建议不使用过期缓存，必要时强制刷新。</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: 是否可以通过邮件或 RSS 跟踪更新？</strong>
+                    <p>A: 当前以页面直接访问为主。后续如有订阅方式会在本站说明。</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: 链接失效或内容有疑问怎么办？</strong>
+                    <p>A: 你可以参照页面底部或相关注释中的联系方式反馈，维护者会定期处理。</p>
+                </div>
+                <div class="note">
+                    ⚡ 提示：将 <a href="https://com-jjb.com">jjb</a> 放置于浏览器的“常用站点”或“快速拨号”能进一步提升再次访问的效率。
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <span>jjb · 持续导航 · 信息索引</span>
+        <span class="footer-links">
+            <a href="https://com-jjb.com">jjb</a>
+            <a href="#revisit">再次访问</a>
+            <a href="#collect">收藏</a>
+        </span>
+    </div>
+</footer>
+
+</body>
+</html>
